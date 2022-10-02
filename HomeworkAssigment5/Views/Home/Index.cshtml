@@ -1,0 +1,62 @@
+﻿@using HomeworkAssigment5.Models
+@model List<Book>
+
+
+<h2>Books</h2>
+<hr style="margin: 5px" />
+@using (Html.BeginForm("SearchBook", "Home", FormMethod.Post))
+{
+    <form>
+        <div class="row">
+            <div class="col-4">
+                <input type="text" class="form-control" placeholder="Search Book Name" aria-label="First name">
+            </div>
+
+            <div class="col">
+                <select class="form-control">
+                    <option class="dropdown-item">Select a type</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <select class="form-control">
+                    <option class="dropdown-item">Select a Athor</option>
+                </select>
+            </div>
+            <div class="col">
+                @Html.ActionLink("Search", "SearchBook", new { }, new { @class = "form-control btn btn-success" })
+            </div>
+            <div class="col">
+                @Html.ActionLink("Search", "Clear", new { }, new { @class = "form-control btn btn-danger" })
+            </div>
+
+        </div>
+    </form>
+}
+<hr style="margin: 2px" />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Type</th>
+            <th scope="col">Page Count</th>
+            <th scope="col">Points</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Book book in Model)
+        {
+            <tr>
+                <td>@book.Name</td>
+                <td>@book.Author.Name</td>
+                <td>@book.Type</td>
+                <td>@book.PageCount</td>
+                <td>@book.Points</td>
+                <td>@book.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
